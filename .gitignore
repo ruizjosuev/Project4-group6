@@ -1,3 +1,6 @@
+# Ignore pickle models
+spotify_model.pkl
+
 # Byte-compiled / optimized / DLL files
 .ds_store
 __pycache__/
