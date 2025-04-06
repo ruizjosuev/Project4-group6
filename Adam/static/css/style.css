@@ -1,0 +1,60 @@
+/* Navbar sizing */
+.navbar-nav h4 {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    /* Add any other styling you want for all h4 elements in the navbar */
+  }
+  
+.navbar-nav .nav-link.active {
+font-size: 1.25rem; /* Match the font size of the other h4 elements */
+/* Add any other styling for the active link */
+}
+  
+.card {
+align-items: center;
+justify-content: center;
+}
+
+.card-header {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header image */
+.header-image {
+
+/* Position and center the image to scale nicely on all screens */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
+z-index: 1;
+}
+
+
+/* The hero image */
+.hero-image {
+/* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/home-header.gif");
+
+/* Set a specific height */
+height: 30%;
+
+/* Position and center the image to scale nicely on all screens */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
+z-index: 1;
+}
+/* Place text in the middle of the image
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+} */
+
+
+

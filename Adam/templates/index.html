@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Danceability Checker</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    input, select {
+      padding: 10px;
+      margin: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result-box {
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      color: white;
+      transition: background-color 0.5s ease;
+    }
+
+    .low-theme {
+      background-color: #2c3e50; /* Dark Blue */
+    }
+
+    .medium-theme {
+      background-color: #e67e22; /* Orange */
+    }
+
+    .high-theme {
+      background-color: #2ecc71; /* Bright Green */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Danceability Checker</h1>
+
+  <form method="post" action="/check">
+    <input type="text" name="track_name" placeholder="Track name" required>
+    <input type="text" name="artists" placeholder="Artist name" required>
+    <br>
+    <button type="submit">Check Danceability</button>
+  </form>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  {% if danceability %}
+    <div class="result-box high-theme">
+      Danceability: {{ danceability }}<br>
+      Energy: {{ energy }}<br>
+      Tempo: {{ tempo }}<br>
+      Liveness: {{ liveness }}
+    </div>
+  {% endif %}
+
+  <hr style="margin: 40px 0;">
+
+  <h2>Predict Danceability</h2>
+
+  <form id="prediction-form">
+    <input type="number" name="energy" step="0.01" placeholder="Energy" required>
+    <input type="number" name="loudness" step="0.01" placeholder="Loudness" required>
+    <input type="number" name="speechiness" step="0.01" placeholder="Speechiness" required>
+    <input type="number" name="acousticness" step="0.01" placeholder="Acousticness" required>
+    <input type="number" name="instrumentalness" step="0.01" placeholder="Instrumentalness" required>
+    <input type="number" name="liveness" step="0.01" placeholder="Liveness" required>
+    <input type="number" name="valence" step="0.01" placeholder="Valence" required>
+    <input type="number" name="tempo" step="0.01" placeholder="Tempo" required>
+    <input type="number" name="key" placeholder="Key" required>
+    <input type="number" name="mode" placeholder="Mode" required>
+    <input type="number" name="time_signature" placeholder="Time Signature" required>
+    <br>
+    <button type="submit">Predict</button>
+  </form>
+
+  <div id="prediction-result" class="result-box" style="display: none;"></div>
+
+  <script>
+    const form = document.getElementById("prediction-form");
+    const resultBox = document.getElementById("prediction-result");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch("/makePredictions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ data })
+      });
+
+      const json = await res.json();
+      if (json.ok) {
+        const prediction = json.prediction;
+
+        resultBox.textContent = `Predicted Danceability: ${prediction.toUpperCase()}`;
+        resultBox.style.display = "block";
+        resultBox.className = "result-box"; // Reset classes
+        resultBox.classList.add(`${prediction}-theme`);
+      } else {
+        resultBox.textContent = "Prediction error.";
+        resultBox.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
