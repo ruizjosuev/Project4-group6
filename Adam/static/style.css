@@ -1,0 +1,150 @@
+/* === GLOBAL STYLES === */
+body {
+    background: linear-gradient(-45deg, #1db954, #191414, #2a2a2a, #1db954);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* === NAVIGATION BAR === */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #1f1f1f, #292929);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: #e91e63;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #e91e63;
+}
+
+.nav-link.active {
+    font-size: 1.1rem;
+    background-color: #e91e63;
+    box-shadow: 0 0 15px #e91e63;
+}
+
+/* === FORMS + INPUTS === */
+input, select {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 250px;
+    max-width: 90%;
+    background-color: #191414;
+    color: white;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #e91e63;
+    box-shadow: 0 0 10px #e91e63;
+}
+
+/* === RESULT BOX STYLING === */
+.result-box {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    transition: background-color 0.5s ease;
+    color: white;
+}
+
+.low-theme {
+    background-color: #2c3e50;
+}
+
+.medium-theme {
+    background-color: #e67e22;
+}
+
+.high-theme {
+    background-color: #2ecc71;
+}
+
+/* === ERROR MESSAGE === */
+.error-msg {
+    color: red;
+    margin-top: 15px;
+}
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media screen and (max-width: 600px) {
+    .navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input, select {
+        width: 90%;
+    }
+}
+
+/* === DROPDOWN FIXES AND STYLING === */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #191414;
+    color: white;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+}
+
+select option {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+  
+  

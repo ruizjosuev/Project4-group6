@@ -7,27 +7,39 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 app = Flask(__name__)
 
 # Load the dataset
-df = pd.read_csv("dataset.csv")  # Ensure 'track_name' and 'artists' columns exist
+df = pd.read_csv("cleaned_dataset.csv")  # Make sure this file exists and has 'track_name' & 'artists'
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html', danceability=None, error=None)
+    artist_track_map = df.groupby('artists')['track_name'].unique().apply(list).to_dict()
+    artist_names = sorted(artist_track_map.keys())
+
+    return render_template('index.html',
+                           danceability=None,
+                           error=None,
+                           artist_names=artist_names,
+                           artist_track_map=artist_track_map)
 
 @app.route('/check', methods=['POST'])
 def check_danceability():
-    track_name = request.form.get('track_name', '').strip().lower()
-    artists = request.form.get('artists', '').strip().lower()
+    track_name = request.form.get('track_name', '').strip()
+    artists = request.form.get('artists', '').strip()
+
+    artist_track_map = df.groupby('artists')['track_name'].unique().apply(list).to_dict()
+    artist_names = sorted(artist_track_map.keys())
 
     if not track_name or not artists:
         return render_template('index.html',
                                error="Please enter both track name and artist.",
                                danceability=None,
                                track_name=track_name,
-                               artists=artists)
+                               artists=artists,
+                               artist_names=artist_names,
+                               artist_track_map=artist_track_map)
 
     match = df[
-        (df['track_name'].str.lower().str.strip() == track_name) &
-        (df['artists'].str.lower().str.strip() == artists)
+        (df['track_name'].str.strip() == track_name) &
+        (df['artists'].str.strip() == artists)
     ]
 
     if not match.empty:
@@ -39,13 +51,23 @@ def check_danceability():
                                liveness=round(song['liveness'], 2),
                                error=None,
                                track_name=track_name,
-                               artists=artists)
+                               artists=artists,
+                               artist_names=artist_names,
+                               artist_track_map=artist_track_map)
 
     return render_template('index.html',
-                           error="Song not found in the dataset. Try predicting it instead.",
+                           error="Song not found in the dataset. Try another one.",
                            danceability=None,
                            track_name=track_name,
-                           artists=artists)
+                           artists=artists,
+                           artist_names=artist_names,
+                           artist_track_map=artist_track_map)
+
+@app.route('/get_tracks', methods=['POST'])
+def get_tracks():
+    artist = request.json.get('artist', '').strip()
+    tracks = df[df['artists'].str.strip() == artist]['track_name'].dropna().unique().tolist()
+    return jsonify(tracks=sorted(tracks))
 
 @app.route("/makePredictions", methods=["POST"])
 def make_predictions():
@@ -64,7 +86,6 @@ def make_predictions():
     mode = int(content["mode"])
     time_signature = int(content["time_signature"])
 
-    # Predict using modelHelper
     prediction = modelHelper.make_predictions(
         energy, loudness, speechiness, acousticness,
         instrumentalness, liveness, valence, tempo,
@@ -75,6 +96,8 @@ def make_predictions():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
 
 
