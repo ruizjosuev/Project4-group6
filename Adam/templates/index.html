@@ -18,27 +18,28 @@
       <a href="/contact" class="nav-link {% if request.path == '/contact' %}active{% endif %}">📨 Contact</a>
     </nav>
 
-    <form method="post" action="/check">
-      <label for="artist-select">Artist:</label>
-      <select name="artists" id="artist-select" required>
-        <option value="">Select an artist</option>
-        {% for artist in artist_names %}
-          <option value="{{ artist }}" {% if artist == artists %}selected{% endif %}>{{ artist }}</option>
-        {% endfor %}
-      </select>
-
-      <label for="track-select">Track:</label>
-      <select name="track_name" id="track-select" required>
-        <option value="">Select a track</option>
-        {% if artists %}
-          {% for track in artist_track_map.get(artists, []) %}
-            <option value="{{ track }}" {% if track == track_name %}selected{% endif %}>{{ track }}</option>
-          {% endfor %}
-        {% endif %}
-      </select>
-
-      <br>
-      <button type="submit">Check Danceability</button>
+    <form method="post" action="/check" class="mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <select name="artists" id="artist-select" class="form-select mb-3" required>
+            <option value="">Select Artist</option>
+            {% for artist in artist_names %}
+              <option value="{{ artist }}" {% if artist == artists %}selected{% endif %}>{{ artist }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select name="track_name" id="track-select" class="form-select mb-3" required>
+            <option value="">Select Track</option>
+            {% if artist_track_map.get(artists) %}
+              {% for track in artist_track_map[artists] %}
+                <option value="{{ track }}" {% if track == track_name %}selected{% endif %}>{{ track }}</option>
+              {% endfor %}
+            {% endif %}
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-outline-light">Check Danceability</button>
     </form>
 
     {% if error %}
@@ -46,40 +47,40 @@
     {% endif %}
 
     {% if danceability %}
-      <div class="result-box high-theme">
+      <div class="result-box {{ theme_class }}">
         Danceability: {{ danceability }}<br>
         Energy: {{ energy }}<br>
         Tempo: {{ tempo }}<br>
         Liveness: {{ liveness }}
       </div>
     {% endif %}
+
   </div>
 
   <script>
-    const artistSelect = document.getElementById('artist-select');
-    const trackSelect = document.getElementById('track-select');
+    const artistSelect = document.getElementById("artist-select");
+    const trackSelect = document.getElementById("track-select");
 
-    artistSelect.addEventListener('change', async () => {
+    artistSelect.addEventListener("change", async () => {
       const selectedArtist = artistSelect.value;
 
-      // Reset track dropdown
-      trackSelect.innerHTML = '<option value="">Select a track</option>';
+      const response = await fetch("/get_tracks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ artist: selectedArtist })
+      });
 
-      if (selectedArtist) {
-        const response = await fetch("/get_tracks", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ artist: selectedArtist })
-        });
+      const data = await response.json();
+      trackSelect.innerHTML = '<option value="">Select Track</option>';
 
-        const data = await response.json();
-        data.tracks.forEach(track => {
-          const option = document.createElement("option");
-          option.value = track;
-          option.textContent = track;
-          trackSelect.appendChild(option);
-        });
-      }
+      data.tracks.forEach(track => {
+        const option = document.createElement("option");
+        option.value = track;
+        option.textContent = track;
+        trackSelect.appendChild(option);
+      });
     });
   </script>
 

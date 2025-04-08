@@ -3,13 +3,16 @@ import os
 import pandas as pd
 import modelHelper
 
+# Setup
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 app = Flask(__name__)
 
-# Load the dataset
-df = pd.read_csv("cleaned_dataset.csv")  # Make sure this file exists and has 'track_name' & 'artists'
+# Load dataset
+df = pd.read_csv("cleaned_dataset.csv")  # Ensure 'track_name' and 'artists' columns exist
 
-@app.route('/', methods=['GET'])
+# ---------- ROUTES ----------
+
+@app.route('/')
 def index():
     artist_track_map = df.groupby('artists')['track_name'].unique().apply(list).to_dict()
     artist_names = sorted(artist_track_map.keys())
@@ -19,6 +22,7 @@ def index():
                            error=None,
                            artist_names=artist_names,
                            artist_track_map=artist_track_map)
+
 
 @app.route('/check', methods=['POST'])
 def check_danceability():
@@ -30,7 +34,7 @@ def check_danceability():
 
     if not track_name or not artists:
         return render_template('index.html',
-                               error="Please enter both track name and artist.",
+                               error="Please select both artist and track.",
                                danceability=None,
                                track_name=track_name,
                                artists=artists,
@@ -44,11 +48,22 @@ def check_danceability():
 
     if not match.empty:
         song = match.iloc[0]
+        danceability = song['danceability']
+
+        # Determine result theme based on danceability
+        if danceability < 0.4:
+            theme_class = 'low-theme'
+        elif danceability < 0.7:
+            theme_class = 'medium-theme'
+        else:
+            theme_class = 'high-theme'
+
         return render_template('index.html',
-                               danceability=round(song['danceability'], 2),
+                               danceability=round(danceability, 2),
                                energy=round(song['energy'], 2),
                                tempo=round(song['tempo'], 2),
                                liveness=round(song['liveness'], 2),
+                               theme_class=theme_class,
                                error=None,
                                track_name=track_name,
                                artists=artists,
@@ -56,12 +71,13 @@ def check_danceability():
                                artist_track_map=artist_track_map)
 
     return render_template('index.html',
-                           error="Song not found in the dataset. Try another one.",
+                           error="Song not found in the dataset.",
                            danceability=None,
                            track_name=track_name,
                            artists=artists,
                            artist_names=artist_names,
                            artist_track_map=artist_track_map)
+
 
 @app.route('/get_tracks', methods=['POST'])
 def get_tracks():
@@ -69,33 +85,37 @@ def get_tracks():
     tracks = df[df['artists'].str.strip() == artist]['track_name'].dropna().unique().tolist()
     return jsonify(tracks=sorted(tracks))
 
-@app.route("/makePredictions", methods=["POST"])
+
+@app.route('/makePredictions', methods=['POST'])
 def make_predictions():
     content = request.json["data"]
 
-    # Parse input values
-    energy = float(content["energy"])
-    loudness = float(content["loudness"])
-    speechiness = float(content["speechiness"])
-    acousticness = float(content["acousticness"])
-    instrumentalness = float(content["instrumentalness"])
-    liveness = float(content["liveness"])
-    valence = float(content["valence"])
-    tempo = float(content["tempo"])
-    key = int(content["key"])
-    mode = int(content["mode"])
-    time_signature = int(content["time_signature"])
-
     prediction = modelHelper.make_predictions(
-        energy, loudness, speechiness, acousticness,
-        instrumentalness, liveness, valence, tempo,
-        key, mode, time_signature
+        float(content["energy"]),
+        float(content["loudness"]),
+        float(content["speechiness"]),
+        float(content["acousticness"]),
+        float(content["instrumentalness"]),
+        float(content["liveness"]),
+        float(content["valence"]),
+        float(content["tempo"]),
+        int(content["key"]),
+        int(content["mode"]),
+        int(content["time_signature"])
     )
 
     return jsonify({"ok": True, "prediction": prediction})
 
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
 
 
