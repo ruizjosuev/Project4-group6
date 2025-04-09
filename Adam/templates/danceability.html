@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container py-5">
+<div class="container py-5 text-light">
   <h2 class="text-center mb-4">🎧 Danceability Checker</h2>
+
+  <p class="lead mb-4">
+    Welcome to the Danceability Checker! Here you can either type in an artist name or scroll through the dropdown menu.
+    Once you find your artist, click the song menu to see their tracks.
+    After selecting both artist and song, you'll get a response showing how danceable it is based on 
+    <strong>Energy</strong>, <strong>Tempo</strong>, and <strong>Liveness</strong>.
+  </p>
 
   <form method="POST" action="/danceability">
     <div class="row justify-content-center">
       <div class="col-md-5 mb-3">
-        <label for="artist-select" class="form-label text-light">Select Artist</label>
+        <label for="artist-select" class="form-label">Select Artist</label>
         <input list="artist-options" name="artists" id="artist-select" class="form-control" placeholder="Start typing..." value="{{ artists }}" required>
         <datalist id="artist-options">
           {% for artist in artist_names %}
@@ -17,7 +24,7 @@
       </div>
 
       <div class="col-md-5 mb-3">
-        <label for="track-select" class="form-label text-light">Select Track</label>
+        <label for="track-select" class="form-label">Select Track</label>
         <select name="track_name" id="track-select" class="form-control" required>
           <option value="">-- Choose a Track --</option>
           {% if artist_track_map.get(artists) %}
@@ -39,7 +46,7 @@
   {% endif %}
 
   {% if danceability %}
-    <div class="result-box {{ theme_class }} mt-4">
+    <div class="result-box {{ theme_class }} mt-4 text-center">
       <p><strong>Danceability:</strong> {{ danceability }}</p>
       <p><strong>Energy:</strong> {{ energy }}</p>
       <p><strong>Tempo:</strong> {{ tempo }}</p>
@@ -72,6 +79,7 @@
   });
 </script>
 {% endblock %}
+
 
 
 

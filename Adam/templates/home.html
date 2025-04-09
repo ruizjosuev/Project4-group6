@@ -1,20 +1,31 @@
 {% extends "base.html" %}
 
+{% block title %}Home | Danceability App{% endblock %}
+
 {% block content %}
-<div class="container py-5">
-  <h1 class="text-light mb-4">🎶 Welcome to the Danceability App</h1>
-  <p class="lead text-muted">
-    Discover how danceable your favorite tracks are, get music recommendations based on mood and energy,
-    explore insightful audio visualizations, and see what's trending!
+<div class="container text-center text-light py-5">
+  <h1 class="mb-3">🎧 Welcome to the Danceability Checker</h1>
+  <p class="lead mb-4">
+    Welcome here you can find out just has danceable your favorite songs are, find new songs through our recommender, see whats at the top of the charts, and see which genre is the most dancable through our visuals. Make sure your not showing up to a party with a whack playlist check us out and be the best DJ out there.
   </p>
 
-  <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
-    <a href="/danceability" class="btn btn-success">🕺 Try Danceability Checker</a>
-    <a href="/recommend" class="btn btn-warning">🎧 Get Recommendations</a>
-    <a href="/top-tracks" class="btn btn-primary">🔥 View Top Tracks</a>
-    <a href="/visuals" class="btn btn-info">📊 Explore Visuals</a>
+  <h3 class="text-light mb-3">🎥 Spotify</h3>
+  <div class="ratio ratio-16x9 mb-4" style="max-width: 900px; margin: 0 auto;">
+    <iframe
+      src="https://www.youtube.com/embed/-X_2TT43PRs"
+      title="Danceability Demo"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <div class="d-flex justify-content-center gap-3">
+    <a href="/danceability" class="btn btn-success">Try the Checker</a>
+    <a href="/recommend" class="btn btn-outline-light">Get Recommendations</a>
   </div>
 </div>
 {% endblock %}
+
+
+
 
 

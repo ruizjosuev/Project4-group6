@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="text-center mb-4">
-    <h2 class="text-light">Coming Soon: Audio Visualizations</h2>
-    <p class="text-muted">Stay tuned for some cool danceability plots and audio features!</p>
-</div>
+{% block title %}Visuals | Danceability App{% endblock %}
 
-<!-- Responsive Tableau Embed -->
-<div class="ratio ratio-16x9" style="max-width: 100%;">
+{% block content %}
+<div class="container-fluid px-0">
+  <div class="text-center py-4">
+    <h2 class="text-light">📊 Danceability Visualizations</h2>
+    <p class="lead text-light">Explore audio insights and patterns in the Spotify dataset.</p>
+  </div>
+
+  <!-- Fullscreen Tableau Embed -->
+  <div style="width: 100vw; height: 90vh;">
     <iframe
-        src="https://public.tableau.com/views/SpotifyClassification/Dashboard?:embed=true&:showVizHome=no"
-        frameborder="0"
-        allowfullscreen
-        style="width: 100%; height: 100%; border: none;">
+      src="https://public.tableau.com/views/SpotifyClassification/Dashboard?:embed=true&:showVizHome=no"
+      style="width: 100%; height: 100%; border: none;"
+      allowfullscreen
+      loading="lazy">
     </iframe>
+  </div>
 </div>
 {% endblock %}
 

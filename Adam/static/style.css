@@ -1,213 +1,91 @@
 /* === GLOBAL STYLES === */
 body {
-    background: linear-gradient(-45deg, #1db954, #191414, #2a2a2a, #1db954);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    color: white;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Animated gradient background */
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* === NAVIGATION BAR === */
-  .navbar-nav {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-  }
-  
-  .nav-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    padding: 8px 16px;
-    border-radius: 25px;
-    background: linear-gradient(145deg, #1f1f1f, #292929);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    background: #e91e63;
-    color: white;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #e91e63;
-  }
-  
-  .nav-link.active {
-    font-size: 1.1rem;
-    background-color: #e91e63;
-    box-shadow: 0 0 15px #e91e63;
-  }
-  
-  /* === FORMS + INPUTS === */
-  input, select {
-    padding: 10px;
-    margin: 8px;
-    border-radius: 5px;
-    border: none;
-    width: 250px;
-    max-width: 90%;
-    background-color: #191414;
-    color: white;
-  }
-  
-  /* Button Styling */
-  button {
-    padding: 10px 20px;
-    margin-top: 15px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #e91e63;
-    box-shadow: 0 0 10px #e91e63;
-  }
-  
-  /* === RESULT BOX STYLING === */
-  .result-box {
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    font-size: 1.5rem;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Add these classes if not already present */
-  .low-theme {
-    background-color: #c0392b; /* red */
-  }
-  
-  .medium-theme {
-    background-color: #e67e22; /* orange */
-  }
-  
-  .high-theme {
-    background-color: #2ecc71; /* green */
-  }
-  
-  
-  /* === ERROR MESSAGE === */
-  .error-msg {
-    color: red;
-    margin-top: 15px;
-  }
-  
-  /* === RESPONSIVE ADJUSTMENTS === */
-  @media screen and (max-width: 600px) {
-    .navbar-nav {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    input, select {
-      width: 90%;
-    }
-  }
-  
-  /* === DROPDOWN FIXES AND STYLING === */
-  select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #191414;
-    color: white;
-    z-index: 2;
-    background-image: url("data:image/svg+xml,%3Csvg fill='white' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px;
-    padding-right: 30px;
-  }
-  
-  select option {
-    background-color: #1a1a1a;
-    color: white;
-  }
-  
-  /* === TEAM SECTION STYLING === */
-  .team-photo {
-    width: 90px !important;
-    height: 90px !important;
-    object-fit: cover !important;
-    border-radius: 50% !important;
-    border: 2px solid #1db954;
-    box-shadow: 0 0 6px #1db95460;
-    display: block;
-    margin: 0 auto 10px auto;
-  }
-  
-  .team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  .team-member {
-    background-color: #1a1a1a;
-    padding: 20px;
-    width: 200px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .team-member:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px #1db954;
-  }
-  
-  .team-member h3 {
-    color: #1db954;
-    margin: 10px 0 5px;
-    font-size: 1.1rem;
-  }
-  
-  .team-member p {
-    color: #ddd;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    margin: 5px 0;
-  }
-  
-  .team-member a {
-    display: inline-block;
-    margin-top: 8px;
-    color: #1db954;
-    font-weight: bold;
-    font-size: 0.9rem;
-    text-decoration: none;
-  }
-  
-  .team-member a:hover {
-    text-decoration: underline;
-  }
+  background: linear-gradient(-45deg, #1db954, #191414, #2a2a2a, #1db954);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #f1f1f1;  /* Brighter, readable text */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  color: #f1f1f1; /* readable text */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+/* Paragraphs */
+p, .lead {
+  color: #e2e2e2;
+}
+
+/* Buttons */
+.btn {
+  font-weight: bold;
+}
+
+.btn-success {
+  background-color: #1db954;
+  border: none;
+}
+
+.btn-outline-light {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #191414;
+}
+
+/* Optional: contrast container wrapper */
+.bg-contrast {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+/* === RESULT BOX STYLING === */
+.result-box {
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Color-coded themes for danceability */
+.low-theme {
+  background-color: #3498db; /* Blue = Low Danceability */
+}
+
+.medium-theme {
+  background-color: #f39c12; /* Orange = Medium Danceability */
+}
+
+.high-theme {
+  background-color: #27ae60; /* Green = High Danceability */
+}
+
+
   
 
   

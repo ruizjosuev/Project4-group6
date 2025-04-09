@@ -1,56 +1,65 @@
 {% extends "base.html" %}
 
+{% block title %}Recommender | Danceability App{% endblock %}
+
 {% block content %}
-<div class="container py-4">
-    <h2 class="text-light text-center mb-4">🎯 Recommended Tunes</h2>
-    <p class="text-muted text-center">Choose your audio preferences to find similar tracks.</p>
+<div class="container py-5 text-light">
 
-    <form method="POST" class="row g-3 text-light">
-        <div class="col-md-3">
-            <label class="form-label">Danceability</label>
-            <select name="danceability" class="form-select" required>
-                {% for val in danceability_options %}
-                <option value="{{ val }}">{{ val }}</option>
-                {% endfor %}
-            </select>
-        </div>
+  <h2 class="text-center mb-4">🎯 Recommended Tunes</h2>
 
-        <div class="col-md-3">
-            <label class="form-label">Energy</label>
-            <select name="energy" class="form-select" required>
-                {% for val in energy_options %}
-                <option value="{{ val }}">{{ val }}</option>
-                {% endfor %}
-            </select>
-        </div>
+  <p class="lead text-center">
+    Find that new song you've been looking for. Choose your audio preferences to find similar tracks.
+  </p>
 
-        <div class="col-md-3">
-            <label class="form-label">Tempo</label>
-            <input type="number" step="any" name="tempo" class="form-control" required>
-        </div>
+  <form method="POST" class="row g-4 justify-content-center">
 
-        <div class="col-md-3">
-            <label class="form-label">Instrumentalness</label>
-            <input type="number" step="any" name="instrumentalness" class="form-control" required>
-        </div>
-
-        <div class="col-12 text-center">
-            <button type="submit" class="btn btn-warning">Recommend</button>
-        </div>
-    </form>
-
-    {% if recommendations %}
-    <div class="mt-5">
-        <h4 class="text-light text-center">🔁 Recommended Tracks:</h4>
-        <ul class="list-group list-group-flush mt-3">
-            {% for rec in recommendations %}
-            <li class="list-group-item bg-dark text-light">
-                <strong>{{ rec.track_name }}</strong> by {{ rec.artists }}
-            </li>
-            {% endfor %}
-        </ul>
+    <div class="col-md-3">
+      <label class="form-label">Danceability</label>
+      <select name="danceability" class="form-select bg-dark text-light" required>
+        {% for val in danceability_options %}
+        <option value="{{ val }}">{{ val }}</option>
+        {% endfor %}
+      </select>
     </div>
-    {% endif %}
+
+    <div class="col-md-3">
+      <label class="form-label">Energy</label>
+      <select name="energy" class="form-select bg-dark text-light" required>
+        {% for val in energy_options %}
+        <option value="{{ val }}">{{ val }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Tempo</label>
+      <input type="number" step="any" name="tempo" class="form-control bg-dark text-light" required>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Instrumentalness</label>
+      <input type="number" step="any" name="instrumentalness" class="form-control bg-dark text-light" required>
+    </div>
+
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-success px-4">Recommend</button>
+    </div>
+  </form>
+
+  {% if recommendations %}
+  <div class="mt-5">
+    <h4 class="text-center">🔁 Recommended Tracks:</h4>
+    <ul class="list-group list-group-flush mt-3">
+      {% for rec in recommendations %}
+      <li class="list-group-item bg-dark text-light">
+        <strong>{{ rec.track_name }}</strong> by {{ rec.artists }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
+
+
 

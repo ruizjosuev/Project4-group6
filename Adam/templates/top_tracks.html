@@ -1,18 +1,24 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="text-center mb-4">
-    <h2 class="text-light">Top Tracks Dashboard</h2>
-    <p class="text-muted">Explore the most popular and danceable tracks in our dataset.</p>
-</div>
+{% block title %}Top Tracks | Danceability App{% endblock %}
 
-<!-- Responsive Tableau Embed -->
-<div class="ratio ratio-16x9" style="max-width: 100%;">
+{% block content %}
+<div class="container-fluid px-0">
+  <div class="text-center py-4">
+    <h2 class="text-light">🔥 Top Tracks Dashboard</h2>
+    <p class="lead text-light">Explore the most popular and danceable tracks in our dataset.</p>
+  </div>
+
+  <!-- Fullscreen Tableau Embed -->
+  <div style="width: 100vw; height: 90vh;">
     <iframe
-        src="https://public.tableau.com/views/spotify2_17440708087750/Dashboard1?:embed=true&:showVizHome=no"
-        frameborder="0"
-        allowfullscreen
-        style="width: 100%; height: 100%; border: none;">
+      src="https://public.tableau.com/views/spotify2_17440708087750/Dashboard1?:embed=true&:showVizHome=no"
+      style="width: 100%; height: 100%; border: none;"
+      allowfullscreen
+      loading="lazy">
     </iframe>
+  </div>
 </div>
 {% endblock %}
+
+
