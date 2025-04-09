@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 
-PIPELINE_PATH = os.path.join('..', 'Misha', 'danceability_model_pipeline.h5')
+PIPELINE_PATH = os.path.join('danceability_model_pipeline.h5')
 
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))

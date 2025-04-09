@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request, jsonify
 import os
 import pandas as pd
-import modelHelper
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import StandardScaler
 
 # Setup
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 app = Flask(__name__)
 
 # Load dataset
-df = pd.read_csv("cleaned_dataset.csv")  # Ensure 'track_name' and 'artists' columns exist
+df = pd.read_csv("cleaned_dataset.csv")  # Ensure required columns exist
 
 # ---------- ROUTES ----------
 
@@ -50,7 +51,6 @@ def check_danceability():
         song = match.iloc[0]
         danceability = song['danceability']
 
-        # Determine result theme based on danceability
         if danceability < 0.4:
             theme_class = 'low-theme'
         elif danceability < 0.7:
@@ -86,34 +86,69 @@ def get_tracks():
     return jsonify(tracks=sorted(tracks))
 
 
-@app.route('/makePredictions', methods=['POST'])
-def make_predictions():
-    content = request.json["data"]
+@app.route('/top-tracks')
+def top_tracks():
+    return render_template('top_tracks.html')
 
-    prediction = modelHelper.make_predictions(
-        float(content["energy"]),
-        float(content["loudness"]),
-        float(content["speechiness"]),
-        float(content["acousticness"]),
-        float(content["instrumentalness"]),
-        float(content["liveness"]),
-        float(content["valence"]),
-        float(content["tempo"]),
-        int(content["key"]),
-        int(content["mode"]),
-        int(content["time_signature"])
+
+@app.route('/visuals')
+def visuals():
+    return render_template('visuals.html')
+
+
+@app.route('/recommend', methods=['GET', 'POST'])
+def recommend():
+    danceability_options = [round(x * 0.1, 1) for x in range(11)]
+    energy_options = [round(x * 0.1, 1) for x in range(11)]
+    recommendations = []
+
+    if request.method == 'POST':
+        try:
+            # Get user inputs
+            danceability = float(request.form.get('danceability'))
+            energy = float(request.form.get('energy'))
+            tempo = float(request.form.get('tempo'))
+            instrumentalness = float(request.form.get('instrumentalness'))
+
+            # Create input vector
+            input_vector = [[danceability, energy, tempo, instrumentalness]]
+
+            # Prepare data for similarity
+            features = ['danceability', 'energy', 'tempo', 'instrumentalness']
+            scaler = StandardScaler()
+            X = scaler.fit_transform(df[features])
+            input_scaled = scaler.transform(input_vector)
+
+            # Compute cosine similarity
+            sim_scores = cosine_similarity(input_scaled, X)[0]
+            top_indices = sim_scores.argsort()[-5:][::-1]  # Top 5 recommendations
+
+            recommendations = df.iloc[top_indices][['track_name', 'artists']].to_dict(orient='records')
+
+        except Exception as e:
+            print("Error:", e)
+
+    return render_template(
+        'custom_recommend.html',
+        danceability_options=danceability_options,
+        energy_options=energy_options,
+        recommendations=recommendations
     )
-
-    return jsonify({"ok": True, "prediction": prediction})
 
 
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
 
 
 
