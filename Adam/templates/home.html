@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="text-light mb-4">🎶 Welcome to the Danceability App</h1>
+  <p class="lead text-muted">
+    Discover how danceable your favorite tracks are, get music recommendations based on mood and energy,
+    explore insightful audio visualizations, and see what's trending!
+  </p>
+
+  <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
+    <a href="/danceability" class="btn btn-success">🕺 Try Danceability Checker</a>
+    <a href="/recommend" class="btn btn-warning">🎧 Get Recommendations</a>
+    <a href="/top-tracks" class="btn btn-primary">🔥 View Top Tracks</a>
+    <a href="/visuals" class="btn btn-info">📊 Explore Visuals</a>
+  </div>
+</div>
+{% endblock %}
+
+

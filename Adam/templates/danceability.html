@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-center mb-4">🎧 Danceability Checker</h2>
+
+  <form method="POST" action="/danceability">
+    <div class="row justify-content-center">
+      <div class="col-md-5 mb-3">
+        <label for="artist-select" class="form-label text-light">Select Artist</label>
+        <input list="artist-options" name="artists" id="artist-select" class="form-control" placeholder="Start typing..." value="{{ artists }}" required>
+        <datalist id="artist-options">
+          {% for artist in artist_names %}
+            <option value="{{ artist }}"></option>
+          {% endfor %}
+        </datalist>
+      </div>
+
+      <div class="col-md-5 mb-3">
+        <label for="track-select" class="form-label text-light">Select Track</label>
+        <select name="track_name" id="track-select" class="form-control" required>
+          <option value="">-- Choose a Track --</option>
+          {% if artist_track_map.get(artists) %}
+            {% for track in artist_track_map[artists] %}
+              <option value="{{ track }}" {% if track == track_name %}selected{% endif %}>{{ track }}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-warning px-4">Check</button>
+    </div>
+  </form>
+
+  {% if error %}
+    <p class="error-msg text-danger text-center mt-3">{{ error }}</p>
+  {% endif %}
+
+  {% if danceability %}
+    <div class="result-box {{ theme_class }} mt-4">
+      <p><strong>Danceability:</strong> {{ danceability }}</p>
+      <p><strong>Energy:</strong> {{ energy }}</p>
+      <p><strong>Tempo:</strong> {{ tempo }}</p>
+      <p><strong>Liveness:</strong> {{ liveness }}</p>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  const artistSelect = document.getElementById("artist-select");
+  const trackSelect = document.getElementById("track-select");
+
+  artistSelect.addEventListener("change", async () => {
+    const selectedArtist = artistSelect.value;
+
+    const response = await fetch("/get_tracks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ artist: selectedArtist })
+    });
+
+    const data = await response.json();
+    trackSelect.innerHTML = '<option value="">-- Choose a Track --</option>';
+    data.tracks.forEach(track => {
+      const option = document.createElement("option");
+      option.value = track;
+      option.textContent = track;
+      trackSelect.appendChild(option);
+    });
+  });
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
