@@ -6,71 +6,83 @@
 <div class="container py-5">
   <h2 class="text-center mb-3 text-white">About Our Team</h2>
   <p class="lead text-center text-light mb-5">
-    Meet the developers behind the Danceability App. We created this platform to help you discover how danceable your favorite tracks are and explore audio insights with ease.
+    Meet the developers behind the Danceability App. We’re passionate about music, data, and delivering an experience that helps users connect with their favorite tracks in a new way.
   </p>
 
-    <div class="row justify-content-center">
+  <div class="row justify-content-center">
 
-      <!-- Adam -->
-      <div class="col-md-3 mb-4">
-        <img src="{{ url_for('static', filename='images/adam.jpg') }}" class="rounded-circle mb-2" alt="Adam Loux" width="150" height="150">
-        <h5 class="text-white">Adam Loux</h5>
-        <div class="d-flex justify-content-center gap-2">
-          <a href="https://www.linkedin.com/in/adam-loux-3457bb151" target="_blank" class="btn btn-outline-light btn-sm" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/AdamL95" target="_blank" class="btn btn-outline-light btn-sm" title="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
+    <!-- Adam -->
+    <div class="col-md-3 mb-5 team-member">
+      <img src="{{ url_for('static', filename='images/adam.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Adam Loux">
+      <h5 class="text-white">Adam Loux</h5>
+      <div class="d-flex justify-content-center gap-3 mb-2">
+        <a href="https://www.linkedin.com/in/adam-loux-3457bb151" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin fa-2x text-light"></i>
+        </a>
+        <a href="https://github.com/AdamL95" target="_blank" title="GitHub">
+          <i class="fab fa-github fa-2x text-light"></i>
+        </a>
       </div>
-
-      <!-- Misha -->
-      <div class="col-md-3 mb-4">
-        <img src="{{ url_for('static', filename='images/misha.jpg') }}" class="rounded-circle mb-2" alt="Misha Mambully Muralidharan" width="150" height="150">
-        <h5 class="text-white">Misha Mambully Muralidharan</h5>
-        <div class="d-flex justify-content-center gap-2">
-          <a href="https://www.linkedin.com/in/mishanishanth/" target="_blank" class="btn btn-outline-light btn-sm" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/mishanishanth" target="_blank" class="btn btn-outline-light btn-sm" title="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Willian -->
-      <div class="col-md-3 mb-4">
-        <img src="{{ url_for('static', filename='images/willian.jpg') }}" class="rounded-circle mb-2" alt="Willian Ruiz" width="150" height="150">
-        <h5 class="text-white">Willian Ruiz</h5>
-        <div class="d-flex justify-content-center gap-2">
-          <a href="https://www.linkedin.com/in/willian-ruiz-94a23632a/" target="_blank" class="btn btn-outline-light btn-sm" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/ruizjosuev" target="_blank" class="btn btn-outline-light btn-sm" title="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Cecillia -->
-      <div class="col-md-3 mb-4">
-        <img src="{{ url_for('static', filename='images/cecilia.jpg') }}" class="rounded-circle mb-2" alt="Cecillia Rocha" width="150" height="150">
-        <h5 class="text-white">Cecillia Rocha</h5>
-        <div class="d-flex justify-content-center gap-2">
-          <a href="https://www.linkedin.com/in/cecillia-rocha/" target="_blank" class="btn btn-outline-light btn-sm" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/cecirocks" target="_blank" class="btn btn-outline-light btn-sm" title="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
-
+      <p class="text-light small">
+        Adam is a data analyst with a love for clean code and catchy beats. He helped design and structure the project’s backend logic and data modeling.
+      </p>
     </div>
+
+    <!-- Misha -->
+    <div class="col-md-3 mb-5 team-member">
+      <img src="{{ url_for('static', filename='images/misha.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Misha Mambully Muralidharan">
+      <h5 class="text-white">Misha Mambully Muralidharan</h5>
+      <div class="d-flex justify-content-center gap-3 mb-2">
+        <a href="https://www.linkedin.com/in/mishanishanth/" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin fa-2x text-light"></i>
+        </a>
+        <a href="https://github.com/mishanishanth" target="_blank" title="GitHub">
+          <i class="fab fa-github fa-2x text-light"></i>
+        </a>
+      </div>
+      <p class="text-light small">
+        Misha brought data science and creativity together—developing models and ensuring users can understand danceability through engaging visuals.
+      </p>
+    </div>
+
+    <!-- Willian -->
+    <div class="col-md-3 mb-5 team-member">
+      <img src="{{ url_for('static', filename='images/willian.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Willian Ruiz">
+      <h5 class="text-white">Willian Ruiz</h5>
+      <div class="d-flex justify-content-center gap-3 mb-2">
+        <a href="https://www.linkedin.com/in/willian-ruiz-94a23632a/" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin fa-2x text-light"></i>
+        </a>
+        <a href="https://github.com/ruizjosuev" target="_blank" title="GitHub">
+          <i class="fab fa-github fa-2x text-light"></i>
+        </a>
+      </div>
+      <p class="text-light small">
+        Willian handled the technical stack and integration magic. He helped make the entire user flow smooth and responsive across devices.
+      </p>
+    </div>
+
+    <!-- Cecillia -->
+    <div class="col-md-3 mb-5 team-member">
+      <img src="{{ url_for('static', filename='images/cecilia.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Cecillia Rocha">
+      <h5 class="text-white">Cecillia Rocha</h5>
+      <div class="d-flex justify-content-center gap-3 mb-2">
+        <a href="https://www.linkedin.com/in/cecillia-rocha/" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin fa-2x text-light"></i>
+        </a>
+        <a href="https://github.com/cecirocks" target="_blank" title="GitHub">
+          <i class="fab fa-github fa-2x text-light"></i>
+        </a>
+      </div>
+      <p class="text-light small">
+        Cecillia focused on user experience and styling. Her design choices brought the app to life and kept it looking fresh and accessible.
+      </p>
+    </div>
+
   </div>
-</section>
+</div>
 {% endblock %}
+
 
 
 

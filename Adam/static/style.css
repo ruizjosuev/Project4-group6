@@ -3,7 +3,7 @@ body {
   background: linear-gradient(-45deg, #1db954, #191414, #2a2a2a, #1db954);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
-  color: #f1f1f1;  /* Brighter, readable text */
+  color: #f1f1f1;
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@ body {
   margin: auto;
   padding: 20px;
   text-align: center;
-  color: #f1f1f1; /* readable text */
+  color: #f1f1f1;
 }
 
 /* Headings */
@@ -74,16 +74,75 @@ p, .lead {
 
 /* Color-coded themes for danceability */
 .low-theme {
-  background-color: #3498db; /* Blue = Low Danceability */
+  background-color: #3498db; /* Blue */
 }
 
 .medium-theme {
-  background-color: #f39c12; /* Orange = Medium Danceability */
+  background-color: #f39c12; /* Orange */
 }
 
 .high-theme {
-  background-color: #27ae60; /* Green = High Danceability */
+  background-color: #27ae60; /* Green */
 }
+
+/* === TEAM SECTION STYLING === */
+.team-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #1db954;
+  box-shadow: 0 0 6px #1db95460;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.team-member {
+  max-width: 220px;
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+}
+
+.team-member h5 {
+  color: #1db954;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+.team-member p {
+  color: #eee;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+.team-member a {
+  color: #fff;
+  margin: 0 5px;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+}
+
+.team-member a:hover {
+  color: #1db954;
+}
+
 
 
   
