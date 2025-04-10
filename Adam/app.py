@@ -17,7 +17,6 @@ df = pd.read_csv("cleaned_dataset.csv")  # Ensure required columns exist
 def home():
     return render_template('home.html')
 
-
 @app.route('/danceability', methods=['GET', 'POST'])
 def danceability():
     artist_track_map = df.groupby('artists')['track_name'].unique().apply(list).to_dict()
@@ -75,13 +74,11 @@ def danceability():
         artist_track_map=artist_track_map
     )
 
-
 @app.route('/get_tracks', methods=['POST'])
 def get_tracks():
     artist = request.json.get('artist', '').strip()
     tracks = df[df['artists'].str.strip() == artist]['track_name'].dropna().unique().tolist()
     return jsonify(tracks=sorted(tracks))
-
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend():
@@ -116,25 +113,27 @@ def recommend():
         recommendations=recommendations
     )
 
-
 @app.route('/top-tracks')
 def top_tracks():
     return render_template('top_tracks.html')
-
 
 @app.route('/visuals')
 def visuals():
     return render_template('visuals.html')
 
-
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
+@app.route('/works-cited')
+def works_cited():
+    return render_template('works_cited.html')
 
 # ---------- Run App ----------
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
 
 
