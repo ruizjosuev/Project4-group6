@@ -3,93 +3,58 @@
 {% block title %}About Us | Danceability App{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <h2 class="text-center mb-3 text-white">About Our Team</h2>
-  <p class="lead text-center text-light mb-5">
-    Meet the developers behind the Danceability App. We’re passionate about music, data, and delivering an experience that helps users connect with their favorite tracks in a new way.
-  </p>
+<header class="text-center py-5">
+  <div class="container">
+    <h1>About Our Team</h1>
+    <p class="lead">Meet the passionate developers behind the Danceability App</p>
+  </div>
+</header>
 
-  <div class="row justify-content-center">
+<section class="container-fluid my-5">
+  <div class="row text-center justify-content-center">
 
     <!-- Adam -->
-    <div class="col-md-3 mb-5 team-member">
-      <img src="{{ url_for('static', filename='images/adam.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Adam Loux">
-      <h5 class="text-white">Adam Loux</h5>
-      <div class="d-flex justify-content-center gap-3 mb-2">
-        <a href="https://www.linkedin.com/in/adam-loux-3457bb151" target="_blank" title="LinkedIn">
-          <i class="fab fa-linkedin fa-2x text-light"></i>
-        </a>
-        <a href="https://github.com/AdamL95" target="_blank" title="GitHub">
-          <i class="fab fa-github fa-2x text-light"></i>
-        </a>
-      </div>
-      <p class="text-light small">
-        Favorite music is Alternative Rock.
-        Last concert I went to was Two Door Cinema Club.
-        Growing up I played the Saxaphone.
-      </p>
+    <div class="col-md-3 mb-5">
+      <img src="{{ url_for('static', filename='images/adam.jpg') }}" class="rounded-circle mb-3" alt="Adam Loux" style="width: 150px; height: 150px;">
+      <h4>Adam Loux</h4>
+      <a href="https://www.linkedin.com/in/adam-loux-3457bb151" class="btn btn-outline-light btn-sm mb-1" target="_blank">LinkedIn</a>
+      <a href="https://github.com/AdamL95" class="btn btn-outline-light btn-sm mb-3" target="_blank">GitHub</a>
+      <p class="text-light small">Favorite music is Alternative Rock. Last concert I went to was Two Door Cinema Club. Growing up I played the Saxophone.</p>
     </div>
 
     <!-- Misha -->
-    <div class="col-md-3 mb-5 team-member">
-      <img src="{{ url_for('static', filename='images/misha.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Misha Mambully Muralidharan">
-      <h5 class="text-white">Misha Mambully Muralidharan</h5>
-      <div class="d-flex justify-content-center gap-3 mb-2">
-        <a href="https://www.linkedin.com/in/mishanishanth/" target="_blank" title="LinkedIn">
-          <i class="fab fa-linkedin fa-2x text-light"></i>
-        </a>
-        <a href="https://github.com/mishanishanth" target="_blank" title="GitHub">
-          <i class="fab fa-github fa-2x text-light"></i>
-        </a>
-      </div>
-      <p class="text-light small">
-        fav music:Indian classical
-        has not been to a concert in a while
-        she does bollywood dance
-      </p>
+    <div class="col-md-3 mb-5">
+      <img src="{{ url_for('static', filename='images/misha.jpg') }}" class="rounded-circle mb-3" alt="Misha Mambully Muralidharan" style="width: 150px; height: 150px;">
+      <h4>Misha Mambully Muralidharan</h4>
+      <a href="https://www.linkedin.com/in/mishanishanth/" class="btn btn-outline-light btn-sm mb-1" target="_blank">LinkedIn</a>
+      <a href="https://github.com/mishanishanth" class="btn btn-outline-light btn-sm mb-3" target="_blank">GitHub</a>
+      <p class="text-light small">Fav music: Indian classical. Has not been to a concert in a while. She does Bollywood dance.</p>
     </div>
 
     <!-- Willian -->
-    <div class="col-md-3 mb-5 team-member">
-      <img src="{{ url_for('static', filename='images/willian.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Willian Ruiz">
-      <h5 class="text-white">Willian Ruiz</h5>
-      <div class="d-flex justify-content-center gap-3 mb-2">
-        <a href="https://www.linkedin.com/in/willian-ruiz-94a23632a/" target="_blank" title="LinkedIn">
-          <i class="fab fa-linkedin fa-2x text-light"></i>
-        </a>
-        <a href="https://github.com/ruizjosuev" target="_blank" title="GitHub">
-          <i class="fab fa-github fa-2x text-light"></i>
-        </a>
-      </div>
-      <p class="text-light small">
-        fav music: Reggaeton
-        last concert: Feid
-        and he plays the piano.
-      </p>
+    <div class="col-md-3 mb-5">
+      <img src="{{ url_for('static', filename='images/willian.jpg') }}" class="rounded-circle mb-3" alt="Willian Ruiz" style="width: 150px; height: 150px;">
+      <h4>Willian Ruiz</h4>
+      <a href="https://www.linkedin.com/in/willian-ruiz-94a23632a/" class="btn btn-outline-light btn-sm mb-1" target="_blank">LinkedIn</a>
+      <a href="https://github.com/ruizjosuev" class="btn btn-outline-light btn-sm mb-3" target="_blank">GitHub</a>
+      <p class="text-light small">Fav music: Reggaeton. Last concert: Feid. He plays the piano.</p>
     </div>
 
     <!-- Cecillia -->
-    <div class="col-md-3 mb-5 team-member">
-      <img src="{{ url_for('static', filename='images/cecilia.jpg') }}" class="rounded-circle mb-2 team-photo" alt="Cecillia Rocha">
-      <h5 class="text-white">Cecillia Rocha</h5>
-      <div class="d-flex justify-content-center gap-3 mb-2">
-        <a href="https://www.linkedin.com/in/cecillia-rocha/" target="_blank" title="LinkedIn">
-          <i class="fab fa-linkedin fa-2x text-light"></i>
-        </a>
-        <a href="https://github.com/cecirocks" target="_blank" title="GitHub">
-          <i class="fab fa-github fa-2x text-light"></i>
-        </a>
-      </div>
-      <p class="text-light small">
-        favorite kind of music: alternative rock,
-        last concert Third Eyed Blind and Yellowcard
-        she used to dance ballet in high school
-      </p>
+    <div class="col-md-3 mb-5">
+      <img src="{{ url_for('static', filename='images/cecilia.jpg') }}" class="rounded-circle mb-3" alt="Cecillia Rocha" style="width: 150px; height: 150px;">
+      <h4>Cecillia Rocha</h4>
+      <a href="https://www.linkedin.com/in/cecillia-rocha/" class="btn btn-outline-light btn-sm mb-1" target="_blank">LinkedIn</a>
+      <a href="https://github.com/cecirocks" class="btn btn-outline-light btn-sm mb-3" target="_blank">GitHub</a>
+      <p class="text-light small">Favorite music: alternative rock. Last concert: Third Eye Blind and Yellowcard. She used to dance ballet in high school.</p>
     </div>
 
   </div>
-</div>
+</section>
 {% endblock %}
+
+
+
 
 
 
